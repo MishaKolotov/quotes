@@ -1,0 +1,30 @@
+ .quote-card-container {
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.quote-card-wrapper {
+  animation: fadeInUp 0.5s ease-out;
+  width: 100%;
+  max-width: 72rem; 
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+:host {
+  display: block;
+  height: 100%;
+}

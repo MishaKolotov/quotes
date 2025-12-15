@@ -1,0 +1,18 @@
+<div class="flex items-center justify-center gap-1">
+  @for (star of stars; track star) {
+    <button
+      type="button"
+      (click)="setRating(star)"
+      class="focus:outline-none transition-colors"
+      [attr.aria-label]="'Rate ' + star + ' stars'"
+    >
+      <mat-icon
+        class="text-3xl"
+        [class.text-yellow-400]="star <= currentRating"
+        [class.text-gray-300]="star > currentRating"
+      >
+        {{ star <= currentRating ? 'star' : 'star_border' }}
+      </mat-icon>
+    </button>
+  }
+</div>

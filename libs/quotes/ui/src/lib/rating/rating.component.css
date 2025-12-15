@@ -1,0 +1,25 @@
+.rating-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.star {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #cbd5e1;
+}
+
+.star:hover {
+  transform: scale(1.2);
+  color: #fbbf24;
+}
+
+.star.active {
+  color: #fbbf24;
+}
+
+.star.active:hover {
+  color: #f59e0b;
+}

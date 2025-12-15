@@ -1,0 +1,13 @@
+@if ((isOnline$ | async) === true) {
+  <div class="flex items-center gap-2 text-emerald-700 bg-emerald-50 px-4 py-2.5 rounded-xl shadow-sm border border-emerald-200">
+    <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+    <mat-icon class="text-lg">wifi</mat-icon>
+    <span class="text-sm font-semibold">Online</span>
+  </div>
+} @else {
+  <div class="flex items-center gap-2 text-red-700 bg-red-50 px-4 py-2.5 rounded-xl shadow-sm border border-red-200">
+    <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+    <mat-icon class="text-lg">wifi_off</mat-icon>
+    <span class="text-sm font-semibold">Offline</span>
+  </div>
+}

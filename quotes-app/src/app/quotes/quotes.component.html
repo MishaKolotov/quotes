@@ -1,0 +1,98 @@
+<div class="flex-1 w-full h-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col">
+  <header class="pt-10 sm:pt-12 pb-6 sm:pb-8 px-4 sm:px-6 lg:px-8 xl:px-12 text-center flex-none">
+    <div class="mb-4">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+        Inspirational Quotes
+      </h1>
+      <p class="text-gray-600 text-sm sm:text-base lg:text-lg">Discover wisdom, one quote at a time</p>
+    </div>
+    <div class="flex justify-center">
+      <app-network-status></app-network-status>
+    </div>
+  </header>
+
+  <main class="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 py-10">
+    <div class="quote-card-container mb-6 sm:mb-8 w-full">
+      @if (isLoadingQuote()) {
+        <div class="quote-card-wrapper w-full">
+          <app-quote-card
+            [quote]="null"
+            [loading]="true"
+            [currentRating]="0"
+          ></app-quote-card>
+        </div>
+      } @else if (currentQuote) {
+        @for (quote of [currentQuote]; track quote.id) {
+          <div class="quote-card-wrapper w-full">
+            <app-quote-card
+              [quote]="quote"
+              [loading]="false"
+              [currentRating]="currentRating"
+              (ratingChange)="onRatingChange($event)"
+            ></app-quote-card>
+          </div>
+        }
+      } @else {
+        <div class="quote-card-wrapper w-full">
+          <app-quote-card
+            [quote]="null"
+            [loading]="false"
+            [currentRating]="0"
+          ></app-quote-card>
+        </div>
+      }
+    </div>
+
+    @if (error$ | async) {
+      <div class="bg-red-50 border-l-4 border-red-500 text-red-700 px-6 py-4 rounded-r-lg mb-4 sm:mb-6 shadow-sm w-full max-w-4xl mx-auto">
+        <div class="flex items-center justify-center">
+          <mat-icon class="mr-2">error_outline</mat-icon>
+          <span class="font-medium">{{ error$ | async }}</span>
+        </div>
+      </div>
+    }
+
+  </main>
+
+  <footer class="pt-6 sm:pt-8 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8 xl:px-12 flex-none">
+    <div class="flex flex-col items-center gap-3 sm:gap-4 w-full">
+      <div class="text-xs sm:text-sm text-gray-500">
+        Next quote in
+        <span class="font-semibold text-indigo-600">
+          {{ countdownSeconds() }}
+        </span>
+        s
+        @if (autoplay() === false) {
+          <span class="ml-1 text-[11px] sm:text-xs text-gray-400 uppercase tracking-wide">
+            (paused)
+          </span>
+        }
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 sm:gap-4 w-full">
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="toggleAutoplay()"
+        class="px-4 sm:px-6 py-2 sm:py-3 min-w-[120px] sm:min-w-[140px] font-medium transition-all duration-200 hover:shadow-lg"
+        [class.bg-indigo-50]="autoplay()"
+        [class.border-indigo-300]="autoplay()"
+      >
+        <mat-icon class="mr-2">{{ autoplay() ? 'pause_circle' : 'play_circle' }}</mat-icon>
+        <span>{{ autoplay() ? 'Pause' : 'Auto' }}</span>
+      </button>
+
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="loadRandomQuote()"
+        [disabled]="isLoadingQuote()"
+        class="px-6 sm:px-8 py-2 sm:py-3 min-w-[140px] sm:min-w-[160px] font-medium transition-all duration-200 hover:shadow-lg"
+      >
+        <mat-icon class="mr-2">refresh</mat-icon>
+        <span>Random</span>
+      </button>
+      </div>
+    </div>
+  </footer>
+</div>
