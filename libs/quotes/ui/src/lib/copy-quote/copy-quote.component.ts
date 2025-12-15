@@ -38,8 +38,9 @@ export class CopyQuoteComponent {
       await navigator.clipboard.writeText(text);
       this.snackBar.open('Quote copied!', 'OK', {
         duration: 2000,
-        horizontalPosition: 'center',
+        horizontalPosition: 'start',
         verticalPosition: 'bottom',
+        panelClass: ['copy-snackbar-offset'],
       });
     } catch {
       this.snackBar.open('Copy failed', 'OK', {

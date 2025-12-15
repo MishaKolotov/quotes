@@ -8,6 +8,10 @@ body {
   margin: 0;
 }
 
+.mat-mdc-snack-bar-container.copy-snackbar-offset {
+  margin-bottom: 2.5rem;
+  margin-left: 2.5rem;
+}
 
 .material-icons {
   font-family: 'Material Icons';
