@@ -10,8 +10,13 @@ Minimal Angular + Nx demo for random quotes with offline support.
 ### Install dependencies
 
 ```bash
-npm install
+npm install --force
 ```
+
+> Note: Nx 22 currently expects `@angular-devkit/build-angular` < 21,  
+> while this project uses Angular 21.  
+> Using `--force` (or `--legacy-peer-deps`) is safe here and matches
+> the versions the app was developed and tested with.
 
 ### Run the application (dev)
 
@@ -42,5 +47,3 @@ npm test
 ```bash
 npm run lint
 ```
-
-# Inspirational-Quotes
